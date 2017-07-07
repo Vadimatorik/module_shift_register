@@ -4,8 +4,6 @@
 #include "stm32_f20x_f21x_include_module_lib.h"
 #include "string.h"
 
-
-
 // SPI и GPIO должен быть инициализирован заранее.
 struct module_shift_register_cfg_t {
     const pin*  const st;                   // Вывод, подключенный к защелке.
@@ -14,13 +12,11 @@ struct module_shift_register_cfg_t {
     bool        strob_active;               // Состояния вывода разрешающего сигнал защелки.
 };
 
-
-
 class module_shift_register {
 public:
     constexpr module_shift_register( const module_shift_register_cfg_t* const cfg ) : cfg(cfg) {}
-    int init    ( const spi_base* spi_obj ) const;
-    int write   ( void ) const;
+    void init    ( const spi_base* spi_obj ) const;
+    void write   ( void ) const;
 
 private:
     const module_shift_register_cfg_t* const cfg;

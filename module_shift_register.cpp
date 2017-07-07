@@ -1,12 +1,13 @@
 #include "module_shift_register.h"
 
-int module_shift_register::init ( const spi_base* spi_obj ) const {
+void module_shift_register::init ( const spi_base* spi_obj ) const {
+    this->mutex = USER_OS_STATIC_MUTEX_CREATE( &this->mutex_buf );
     this->spi = spi_obj;
     this->cfg->st->set( !this->cfg->strob_active );              // Переводим защелку в неактивное положение.
 }
 
 // Перезаписать все на выходах.
-int module_shift_register::write ( void ) const {
+void module_shift_register::write ( void ) const {
     USER_OS_TAKE_MUTEX( this->mutex, portMAX_DELAY );   // Ждем, пока освободится SPI.
 
     this->spi->tx( this->cfg->buffer_out, this->cfg->number_output_byte, 10 );
@@ -16,6 +17,4 @@ int module_shift_register::write ( void ) const {
     this->cfg->st->set( !this->cfg->strob_active );
 
     USER_OS_GIVE_MUTEX( this->mutex );	// Разрешаем использование SPI другим потокам.
-
-    return 0;
 }
