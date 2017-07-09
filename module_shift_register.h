@@ -7,20 +7,20 @@
 // SPI и GPIO должен быть инициализирован заранее.
 struct module_shift_register_cfg_t {
     const pin*  const st;                   // Вывод, подключенный к защелке.
-    uint32_t    number_output_byte;         // Колличество байт для вывода. Если 0 - вывод не используется.
-    uint8_t     *buffer_out;
-    bool        strob_active;               // Состояния вывода разрешающего сигнал защелки.
+    const uint32_t    number_output_byte;         // Колличество байт для вывода. Если 0 - вывод не используется.
+          uint8_t*    const buffer_out;
+    const bool        strob_active;               // Состояния вывода разрешающего сигнал защелки.
+          spi_base**  const p_spi;
 };
 
 class module_shift_register {
 public:
     constexpr module_shift_register( const module_shift_register_cfg_t* const cfg ) : cfg(cfg) {}
-    void init    ( const spi_base* spi_obj ) const;
+    void init    ( void ) const;
     void write   ( void ) const;
 
 private:
     const module_shift_register_cfg_t* const cfg;
-    mutable const spi_base* spi                       = nullptr;
     mutable USER_OS_STATIC_MUTEX_BUFFER     mutex_buf = USER_OS_STATIC_MUTEX_BUFFER_INIT_VALUE;
-    mutable USER_OS_STATIC_MUTEX            mutex     = NULL;
+    mutable USER_OS_STATIC_MUTEX            mutex     = nullptr;
 };
