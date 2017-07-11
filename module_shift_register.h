@@ -10,7 +10,7 @@ struct module_shift_register_cfg_t {
     const uint32_t    number_output_byte;         // Колличество байт для вывода. Если 0 - вывод не используется.
           uint8_t*    const buffer_out;
     const bool        strob_active;               // Состояния вывода разрешающего сигнал защелки.
-          spi_base**  const p_spi;
+          spi_base*   const p_spi;
 };
 
 class module_shift_register {
