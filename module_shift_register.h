@@ -1,12 +1,12 @@
 #pragma once
 
-#include "errno.h"
-#include "stm32_f20x_f21x_include_module_lib.h"
-#include "string.h"
+#include "mk_hardware_interfaces_pin.h"
+#include "mk_hardware_interfaces_spi.h"
+#include "user_os.h"
 
 // SPI и GPIO должен быть инициализирован заранее.
 struct module_shift_register_cfg_t {
-    const pin*                    const st;                   // Вывод, подключенный к защелке.
+    const pin_base*               const st;                   // Вывод, подключенный к защелке.
     const uint32_t                number_output_byte;         // Колличество байт для вывода. Если 0 - вывод не используется.
           uint8_t*                const buffer_out;
     const bool                    strob_active;               // Состояния вывода разрешающего сигнал защелки.
