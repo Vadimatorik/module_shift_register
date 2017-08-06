@@ -11,6 +11,7 @@ struct module_shift_register_cfg_t {
           uint8_t*                const buffer_out;
     const bool                    strob_active;               // Состояния вывода разрешающего сигнал защелки.
           spi_master_8bit_base*   const p_spi;
+          USER_OS_STATIC_MUTEX*   const mutex;                // Может быть не указан (nullptr).
 };
 
 class module_shift_register {
@@ -21,6 +22,4 @@ public:
 
 private:
     const module_shift_register_cfg_t* const cfg;
-    mutable USER_OS_STATIC_MUTEX_BUFFER     mutex_buf = USER_OS_STATIC_MUTEX_BUFFER_INIT_VALUE;
-    mutable USER_OS_STATIC_MUTEX            mutex     = nullptr;
 };
