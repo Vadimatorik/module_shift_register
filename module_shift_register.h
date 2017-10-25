@@ -1,7 +1,7 @@
 #pragma once
 
-#include "mk_hardware_interfaces_pin.h"
-#include "mk_hardware_interfaces_spi.h"
+#include "mc_hardware_interfaces_pin.h"
+#include "mc_hardware_interfaces_spi.h"
 #include "user_os.h"
 
 // SPI и GPIO должен быть инициализирован заранее.
