@@ -1,5 +1,7 @@
 #include "shift_register.h"
 
+#ifdef MODULE_SHIFT_REGISTER_ENABLED
+
 void ShiftRegister::init ( void ) {
 	this->cfg->st->set( !this->cfg->strobActive );					// Переводим защелку в неактивное положение.
 }
@@ -18,3 +20,5 @@ void ShiftRegister::write ( void ) {
     if ( this->cfg->mutex != nullptr)
         USER_OS_GIVE_MUTEX( *this->cfg->mutex );					// Разрешаем использование SPI другим потокам.
 }
+
+#endif
