@@ -7,7 +7,7 @@
 #include "user_os.h"
 
 // SPI и GPIO должен быть инициализирован заранее.
-struct ShiftRegisterCfg {
+struct ShiftRegisterStaticCfg {
 	PinBase*						const st;			// Вывод, подключенный к защелке.
 	const uint8_t*					dataArray;			// Внутренний буфер.
 	const uint32_t					arraySize;			// Размер буфера.
@@ -26,8 +26,8 @@ struct ShiftRegisterDinamicCfg {
 
 class ShiftRegister {
 public:
-	constexpr ShiftRegister ( const ShiftRegisterCfg* const cfg );
-	constexpr ShiftRegister ( const ShiftRegisterDinamicCfg* const cfg );
+	ShiftRegister ( const ShiftRegisterStaticCfg* const cfg );
+	ShiftRegister ( const ShiftRegisterDinamicCfg* const cfg );
 
 	void		init		(	void	);
 

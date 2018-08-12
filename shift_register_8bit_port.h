@@ -1,3 +1,5 @@
+#pragma once
+
 #if defined( MODULE_SHIFT_REGISTER_ENABLED ) && 			\
 	defined( MODULE_SHIFT_REGISTER_8BIT_PORT_ENABLED )
 
