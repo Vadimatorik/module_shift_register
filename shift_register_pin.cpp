@@ -17,7 +17,7 @@ void ShiftRegisterPin::reset ( void ) {
 }
 
 void ShiftRegisterPin::toggle ( void ) {
-	this->set( !this->read );
+	this->set( !this->read() );
 }
 
 void ShiftRegisterPin::set ( bool state ) {

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "project_config.h"
+
 #if defined( MODULE_SHIFT_REGISTER_ENABLED ) && \
 	defined( MODULE_SHIFT_REGISTER_PIN_ENABLED )
 
@@ -11,7 +13,7 @@
 struct ShiftRegisterPinCfg {
 	const uint8_t			byte;		/// Байт в сдвиговом регистре.
 	const uint8_t			bit;		/// Бит в сдвиговом регистре.
-	const ShiftRegister*	sr;			/// Сам сдвиговый регистр.
+	ShiftRegister*			sr;			/// Сам сдвиговый регистр.
 };
 
 class ShiftRegisterPin : public PinBase {

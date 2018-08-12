@@ -1,5 +1,7 @@
 #pragma once
 
+#include "project_config.h"
+
 #if defined( MODULE_SHIFT_REGISTER_ENABLED ) && 			\
 	defined( MODULE_SHIFT_REGISTER_8BIT_PORT_ENABLED )
 
@@ -9,8 +11,8 @@
 #ifdef __cplusplus
 
 struct ShiftRegisterPort8bitCfg {
-	const uint8_t			byte;		/// Байт в сдвиговом регистре.
-	const ShiftRegister*	sr;			/// Сам сдвиговый регистр.
+	uint8_t			byte;		/// Байт в сдвиговом регистре.
+	ShiftRegister*	sr;			/// Сам сдвиговый регистр.
 };
 
 class ShiftRegisterPort8bit : public Port8bitBase {

@@ -39,7 +39,7 @@ int ShiftRegister::writeByte (	uint32_t	byteNumber,
 	if ( byteNumber >= this->arraySize )
 			return -1;
 
-	this->dataArray[ byteNumber ] = *writeData;
+	this->dataArray[ byteNumber ] = writeData;
 
 	return 0;
 }

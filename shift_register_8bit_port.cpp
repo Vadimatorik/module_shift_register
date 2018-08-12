@@ -13,7 +13,7 @@ void ShiftRegisterPort8bit::reset ( void ) {
 void ShiftRegisterPort8bit::toggle ( void ) {
 	uint8_t	data;
 	this->cfg->sr->readByte( this->cfg->byte, &data );
-	data ~= data;
+	data = ~data;
 	this->cfg->sr->writeByte( this->cfg->byte, data );
 	this->cfg->sr->update();
 }
