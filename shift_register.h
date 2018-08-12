@@ -29,8 +29,15 @@ public:
 	constexpr ShiftRegister ( const ShiftRegisterCfg* const cfg );
 	constexpr ShiftRegister ( const ShiftRegisterDinamicCfg* const cfg );
 
-	void init	( void );
-	void write	( void );
+	void		init		(	void	);
+
+	int			readByte		(	uint32_t	byteNumber,
+									uint8_t*	returnByte	);
+
+	int			writeByte		(	uint32_t	byteNumber,
+									uint8_t		writeData	);
+
+	void		update		(	void	);
 
 private:
 	PinBase*						const st;

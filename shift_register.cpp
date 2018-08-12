@@ -21,22 +21,41 @@ constexpr ShiftRegister ( const ShiftRegisterStaticCfg* const cfg ) :
 
 
 void ShiftRegister::init ( void ) {
-	this->cfg->st->set( !this->cfg->strobActive );					// Переводим защелку в неактивное положение.
+	this->st->set( !this->strobActive );					// Переводим защелку в неактивное положение.
 }
 
-// Перезаписать все на выходах.
-void ShiftRegister::write ( void ) {
-	if ( this->cfg->mutex != nullptr )
-        USER_OS_TAKE_MUTEX( *this->cfg->mutex, portMAX_DELAY );
+int ShiftRegister::readByte (	uint32_t	byteNumber,
+								uint8_t*	returnByte	) {
+	if ( byteNumber >= this->arraySize )
+		return -1;
 
-	this->cfg->spiObj->tx( this->cfg->dataArray, this->cfg->arraySize, 10 );
+	*returnByte = this->dataArray[ byteNumber ];
+
+	return 0;
+}
+
+int ShiftRegister::writeByte (	uint32_t	byteNumber,
+								uint8_t		writeData	) {
+	if ( byteNumber >= this->arraySize )
+			return -1;
+
+	this->dataArray[ byteNumber ] = *writeData;
+
+	return 0;
+}
+// Перезаписать все на выходах.
+void ShiftRegister::update ( void ) {
+	if ( this->mutex != nullptr )
+        USER_OS_TAKE_MUTEX( *this->mutex, portMAX_DELAY );
+
+	this->spiObj->tx( this->dataArray, this->arraySize, 10 );
 
     // Защелкой делаем обновление.
-    this->cfg->st->set( this->cfg->strobActive );
-    this->cfg->st->set( !this->cfg->strobActive );
+    this->st->set( this->strobActive );
+    this->st->set( !this->strobActive );
 
-    if ( this->cfg->mutex != nullptr)
-        USER_OS_GIVE_MUTEX( *this->cfg->mutex );					// Разрешаем использование SPI другим потокам.
+    if ( this->mutex != nullptr)
+        USER_OS_GIVE_MUTEX( *this->mutex );					// Разрешаем использование SPI другим потокам.
 }
 
 #endif
