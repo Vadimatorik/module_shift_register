@@ -1,3 +1,24 @@
+/*
+
+@startuml
+
+Port8bit ..|> Port8bitBase
+
+class Port8bit {
+	{field}-	const Port8bitCfg* 	const cfg
+	__Constructor__
+	{method}+	Port8bit	( const Port8bitCfg*	const cfg )
+	__Public methods__
+	{method}+	void		write		( uint8_t	data )
+	{method}+	void		reset		( void )
+	{method}+	void		toggle	( void )
+	{method}+	uint8_t	read		( void )
+}
+
+@enduml
+
+*/
+
 #pragma once
 
 #include "project_config.h"
@@ -10,14 +31,16 @@
 
 #ifdef __cplusplus
 
-struct ShiftRegisterPort8bitCfg {
-	uint8_t			byte;		/// Байт в сдвиговом регистре.
-	ShiftRegister*	sr;			/// Сам сдвиговый регистр.
+namespace ShiftRegister {
+
+struct Port8bitCfg {
+	uint8_t					byte;		/// Байт в сдвиговом регистре.
+	ShiftRegister::Base*	sr;			/// Сам сдвиговый регистр.
 };
 
-class ShiftRegisterPort8bit : public Port8bitBase {
+class Port8bit : public Port8bitBase {
 public:
-	ShiftRegisterPort8bit( const ShiftRegisterPort8bitCfg* const cfg ) :
+	Port8bit( const Port8bitCfg* const cfg ) :
 		cfg( cfg ) {}
 
 public:
@@ -27,9 +50,11 @@ public:
 	uint8_t		read			(	void	);
 
 private:
-	const ShiftRegisterPort8bitCfg* 	const cfg;
+	const Port8bitCfg* 	const cfg;
 
 };
+
+}
 
 #endif
 

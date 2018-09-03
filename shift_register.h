@@ -8,8 +8,10 @@
 #include "mc_hardware_interfaces_spi.h"
 #include "user_os.h"
 
+namespace ShiftRegister {
+
 // SPI и GPIO должен быть инициализирован заранее.
-struct ShiftRegisterStaticCfg {
+struct BaseStaticCfg {
 	PinBase*						const st;			// Вывод, подключенный к защелке.
 	uint8_t*					dataArray;			// Внутренний буфер.
 	const uint32_t					arraySize;			// Размер буфера.
@@ -18,7 +20,7 @@ struct ShiftRegisterStaticCfg {
 	USER_OS_STATIC_MUTEX*			const mutex;		// Может быть не указан (nullptr).
 };
 
-struct ShiftRegisterDinamicCfg {
+struct BaseDinamicCfg {
 	PinBase*						const st;			// Вывод, подключенный к защелке.
 	const uint32_t					byteCount;			// Размер буфера.
 	const bool						strobActive;		// Состояния вывода разрешающего сигнал защелки.
@@ -26,10 +28,10 @@ struct ShiftRegisterDinamicCfg {
 	USER_OS_STATIC_MUTEX*			const mutex;		// Может быть не указан (nullptr).
 };
 
-class ShiftRegister {
+class Base {
 public:
-	ShiftRegister ( const ShiftRegisterStaticCfg* const cfg );
-	ShiftRegister ( const ShiftRegisterDinamicCfg* const cfg );
+	Base ( const BaseStaticCfg* const cfg );
+	Base ( const BaseDinamicCfg* const cfg );
 
 	void		init		(	void	);
 
@@ -50,5 +52,7 @@ private:
 	USER_OS_STATIC_MUTEX*			const mutex;
 
 };
+
+}
 
 #endif

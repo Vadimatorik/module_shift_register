@@ -2,7 +2,9 @@
 
 #ifdef MODULE_SHIFT_REGISTER_ENABLED
 
-ShiftRegister::ShiftRegister ( const ShiftRegisterStaticCfg* const cfg ) :
+namespace ShiftRegister {
+
+Base::Base ( const BaseStaticCfg* const cfg ) :
 	st( cfg->st ),
 	dataArray( cfg->dataArray ),
 	arraySize( cfg->arraySize ),
@@ -10,7 +12,7 @@ ShiftRegister::ShiftRegister ( const ShiftRegisterStaticCfg* const cfg ) :
 	spiObj( cfg->spiObj ),
 	mutex( cfg->mutex ) {}
 
-ShiftRegister::ShiftRegister ( const ShiftRegisterDinamicCfg* const cfg ) :
+Base::Base ( const BaseDinamicCfg* const cfg ) :
 	st( cfg->st ),
 	arraySize( cfg->byteCount ),
 	strobActive( cfg->strobActive ),
@@ -20,11 +22,11 @@ ShiftRegister::ShiftRegister ( const ShiftRegisterDinamicCfg* const cfg ) :
 }
 
 
-void ShiftRegister::init ( void ) {
+void Base::init ( void ) {
 	this->st->set( !this->strobActive );					// Переводим защелку в неактивное положение.
 }
 
-int ShiftRegister::readByte (	uint32_t	byteNumber,
+int Base::readByte (	uint32_t	byteNumber,
 								uint8_t*	returnByte	) {
 	if ( byteNumber >= this->arraySize )
 		return -1;
@@ -34,7 +36,7 @@ int ShiftRegister::readByte (	uint32_t	byteNumber,
 	return 0;
 }
 
-int ShiftRegister::writeByte (	uint32_t	byteNumber,
+int Base::writeByte (	uint32_t	byteNumber,
 								uint8_t		writeData	) {
 	if ( byteNumber >= this->arraySize )
 			return -1;
@@ -44,7 +46,7 @@ int ShiftRegister::writeByte (	uint32_t	byteNumber,
 	return 0;
 }
 // Перезаписать все на выходах.
-void ShiftRegister::update ( void ) {
+void Base::update ( void ) {
 	if ( this->mutex != nullptr )
         USER_OS_TAKE_MUTEX( *this->mutex, portMAX_DELAY );
 
@@ -56,6 +58,8 @@ void ShiftRegister::update ( void ) {
 
     if ( this->mutex != nullptr)
         USER_OS_GIVE_MUTEX( *this->mutex );					// Разрешаем использование SPI другим потокам.
+}
+
 }
 
 #endif

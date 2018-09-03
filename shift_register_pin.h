@@ -11,9 +11,9 @@
 #ifdef __cplusplus
 
 struct ShiftRegisterPinCfg {
-	const uint8_t			byte;		/// Байт в сдвиговом регистре.
-	const uint8_t			bit;		/// Бит в сдвиговом регистре.
-	ShiftRegister*			sr;			/// Сам сдвиговый регистр.
+	const uint8_t					byte;		/// Байт в сдвиговом регистре.
+	const uint8_t					bit;		/// Бит в сдвиговом регистре.
+	ShiftRegister::Base*			sr;			/// Сам сдвиговый регистр.
 };
 
 class ShiftRegisterPin : public PinBase {
