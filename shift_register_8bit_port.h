@@ -2,7 +2,10 @@
 
 @startuml
 
-Port8bit ..|> Port8bitBase
+ShiftRegister.Port8bit		..|>		Port8bitBase
+ShiftRegister.Port8bit		--o		ShiftRegister.Base
+
+namespace ShiftRegister {
 
 class Port8bit {
 	{field}-	const Port8bitCfg* 	const cfg
@@ -13,6 +16,8 @@ class Port8bit {
 	{method}+	void		reset		( void )
 	{method}+	void		toggle	( void )
 	{method}+	uint8_t	read		( void )
+}
+
 }
 
 @enduml

@@ -1,3 +1,35 @@
+/*
+
+@startuml
+
+namespace ShiftRegister {
+
+Base --o PinBase
+Base --o SpiMaster8BitBase
+
+class Base {
+	{field}-	PinBase*				const st
+	{field}-	uint8_t*				dataArray
+	{field}-	const uint32_t			arraySize
+	{field}-	const bool				strobActive
+	{field}-	SpiMaster8BitBase*		const spiObj
+	{field}-	USER_OS_STATIC_MUTEX*	const mutex
+	__Constructors__
+	{method}+	Base ( const BaseStaticCfg*	const cfg )
+	{method}+	Base ( const BaseDinamicCfg*	const cfg )
+	__Public methods__
+	{method}+	void		init			( void )
+	{method}+	int		readByte		( uint32_t	byteNumber,\n\t\t\t\t\t  uint8_t*	returnByte )
+	{method}+	int		writeByte		( uint32_t	byteNumber,\n\t\t\t\t\t  uint8_t	writeData )
+	{method}+	void		update		( void )
+}
+
+}
+
+@enduml
+
+*/
+
 #pragma once
 
 #include "project_config.h"
