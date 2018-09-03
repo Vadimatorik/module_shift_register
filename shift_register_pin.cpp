@@ -1,6 +1,8 @@
 #include "shift_register_pin.h"
 
-void ShiftRegisterPin::set ( void ) {
+namespace ShiftRegister {
+
+void Pin::set ( void ) {
 	uint8_t buf;
 	this->cfg->sr->readByte( this->cfg->byte, &buf );
 	buf |= 1 << this->cfg->bit;
@@ -8,7 +10,7 @@ void ShiftRegisterPin::set ( void ) {
 	this->cfg->sr->update();
 }
 
-void ShiftRegisterPin::reset ( void ) {
+void Pin::reset ( void ) {
 	uint8_t buf;
 	this->cfg->sr->readByte( this->cfg->byte, &buf );
 	buf &= ~( ( uint8_t )( 1 << this->cfg->bit ) );
@@ -16,11 +18,11 @@ void ShiftRegisterPin::reset ( void ) {
 	this->cfg->sr->update();
 }
 
-void ShiftRegisterPin::toggle ( void ) {
+void Pin::toggle ( void ) {
 	this->set( !this->read() );
 }
 
-void ShiftRegisterPin::set ( bool state ) {
+void Pin::set ( bool state ) {
 	if ( state ) {
 		this->set();
 	} else {
@@ -28,18 +30,20 @@ void ShiftRegisterPin::set ( bool state ) {
 	}
 }
 
-void ShiftRegisterPin::	set ( int state ) {
+void Pin::	set ( int state ) {
 	this->set( static_cast< bool >( state ) );
 }
 
-void ShiftRegisterPin::set ( uint8_t state ) {
+void Pin::set ( uint8_t state ) {
 	this->set( static_cast< bool >( state ) );
 }
 
-bool ShiftRegisterPin::read ( void ) {
+bool Pin::read ( void ) {
 	uint8_t buf;
 	this->cfg->sr->readByte( this->cfg->byte, &buf );
 	buf &= 1 << this->cfg->bit;
 
 	return static_cast< bool >( buf );
+}
+
 }

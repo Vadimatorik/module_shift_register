@@ -10,15 +10,17 @@
 
 #ifdef __cplusplus
 
-struct ShiftRegisterPinCfg {
+namespace ShiftRegister {
+
+struct PinCfg {
 	const uint8_t					byte;		/// Байт в сдвиговом регистре.
 	const uint8_t					bit;		/// Бит в сдвиговом регистре.
 	ShiftRegister::Base*			sr;			/// Сам сдвиговый регистр.
 };
 
-class ShiftRegisterPin : public PinBase {
+class Pin : public PinBase {
 public:
-	ShiftRegisterPin( const ShiftRegisterPinCfg* const cfg ) :
+	Pin( const PinCfg* const cfg ) :
 		cfg( cfg ) {}
 
 public:
@@ -31,9 +33,11 @@ public:
 	bool	read		(	void	);
 
 private:
-	const ShiftRegisterPinCfg* const cfg;
+	const PinCfg* const cfg;
 
 };
+
+}
 
 #endif
 
