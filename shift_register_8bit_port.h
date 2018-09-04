@@ -2,7 +2,7 @@
 
 @startuml
 
-ShiftRegister.Port8bit		..|>		Port8bitBase
+ShiftRegister.Port8bit		..|>	McHardwareInterfaces.Port8bit
 ShiftRegister.Port8bit		--o		ShiftRegister.Base
 
 namespace ShiftRegister {

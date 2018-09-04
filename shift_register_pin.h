@@ -4,8 +4,8 @@
 
 namespace ShiftRegister {
 
-Pin		--o			ShiftRegister.Base
-Pin		--|>		PinBase
+ShiftRegister.Pin		--o			ShiftRegister.Base
+ShiftRegister.Pin		..|>		McHardwareInterfaces.Pin
 
 class Pin {
 	{field}-	PinBase*				const st
