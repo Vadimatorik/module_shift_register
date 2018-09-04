@@ -52,7 +52,7 @@ struct PinCfg {
 	ShiftRegister::Base*			sr;			/// Сам сдвиговый регистр.
 };
 
-class Pin : public PinBase {
+class Pin : public McHardwareInterfaces::Pin {
 public:
 	Pin	(	const PinCfg*		const cfg	) :
 		cfg( cfg ) {}

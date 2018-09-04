@@ -44,20 +44,20 @@ namespace ShiftRegister {
 
 // SPI и GPIO должен быть инициализирован заранее.
 struct BaseStaticCfg {
-	PinBase*						const st;			// Вывод, подключенный к защелке.
-	uint8_t*					dataArray;			// Внутренний буфер.
-	const uint32_t					arraySize;			// Размер буфера.
-	const bool						strobActive;		// Состояния вывода разрешающего сигнал защелки.
-	SpiMaster8BitBase*				const spiObj;		// Используемый SPI.
-	USER_OS_STATIC_MUTEX*			const mutex;		// Может быть не указан (nullptr).
+	McHardwareInterfaces::Pin*				const st;			// Вывод, подключенный к защелке.
+	uint8_t*									dataArray;			// Внутренний буфер.
+	const uint32_t								arraySize;			// Размер буфера.
+	const bool									strobActive;		// Состояния вывода разрешающего сигнал защелки.
+	McHardwareInterfaces::SpiMaster8Bit*	const spiObj;		// Используемый SPI.
+	USER_OS_STATIC_MUTEX*						const mutex;		// Может быть не указан (nullptr).
 };
 
 struct BaseDinamicCfg {
-	PinBase*						const st;			// Вывод, подключенный к защелке.
-	const uint32_t					byteCount;			// Размер буфера.
-	const bool						strobActive;		// Состояния вывода разрешающего сигнал защелки.
-	SpiMaster8BitBase*				const spiObj;		// Используемый SPI.
-	USER_OS_STATIC_MUTEX*			const mutex;		// Может быть не указан (nullptr).
+	McHardwareInterfaces::Pin*				const st;			// Вывод, подключенный к защелке.
+	const uint32_t								byteCount;			// Размер буфера.
+	const bool									strobActive;		// Состояния вывода разрешающего сигнал защелки.
+	McHardwareInterfaces::SpiMaster8Bit*	const spiObj;		// Используемый SPI.
+	USER_OS_STATIC_MUTEX*						const mutex;		// Может быть не указан (nullptr).
 };
 
 class Base {
@@ -76,12 +76,12 @@ public:
 	void		update		(	void	);
 
 private:
-	PinBase*						const st;
-	uint8_t*						dataArray;
-	const uint32_t					arraySize;
-	const bool						strobActive;
-	SpiMaster8BitBase*				const spiObj;
-	USER_OS_STATIC_MUTEX*			const mutex;
+	McHardwareInterfaces::Pin*						const st;
+	uint8_t*											dataArray;
+	const uint32_t										arraySize;
+	const bool											strobActive;
+	McHardwareInterfaces::SpiMaster8Bit*			const spiObj;
+	USER_OS_STATIC_MUTEX*								const mutex;
 
 };
 

@@ -43,7 +43,7 @@ struct Port8bitCfg {
 	ShiftRegister::Base*	sr;			/// Сам сдвиговый регистр.
 };
 
-class Port8bit : public Port8bitBase {
+class Port8bit : public McHardwareInterfaces::Port8bit {
 public:
 	Port8bit( const Port8bitCfg* const cfg ) :
 		cfg( cfg ) {}
