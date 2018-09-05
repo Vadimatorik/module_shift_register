@@ -2,10 +2,10 @@
 
 @startuml
 
+namespace ShiftRegister {
+
 ShiftRegister.Port8bit		..|>	McHardwareInterfaces.Port8bit
 ShiftRegister.Port8bit		--o		ShiftRegister.Base
-
-namespace ShiftRegister {
 
 class Port8bit {
 	{field}-	const Port8bitCfg* 	const cfg

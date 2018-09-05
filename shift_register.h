@@ -2,10 +2,10 @@
 
 @startuml
 
+namespace ShiftRegister {
+
 ShiftRegister.Base --o McHardwareInterfaces.Pin
 ShiftRegister.Base --o McHardwareInterfaces.SpiMaster8Bit
-
-namespace ShiftRegister {
 
 class Base {
 	{field}-	PinBase*				const st
