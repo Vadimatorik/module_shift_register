@@ -37,7 +37,7 @@ int Base::readByte (	uint32_t	byteNumber,
 }
 
 int Base::writeByte (	uint32_t	byteNumber,
-								uint8_t		writeData	) {
+						uint8_t		writeData	) {
 	if ( byteNumber >= this->arraySize )
 			return -1;
 
