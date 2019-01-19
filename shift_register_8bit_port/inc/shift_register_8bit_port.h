@@ -28,35 +28,38 @@ class Port8bit {
 
 #include "project_config.h"
 
-#if defined( MODULE_SHIFT_REGISTER_ENABLED ) && 			\
-	defined( MODULE_SHIFT_REGISTER_8BIT_PORT_ENABLED )
+#if defined( MODULE_SHIFT_REGISTER_ENABLED ) && \
+    defined( MODULE_SHIFT_REGISTER_8BIT_PORT_ENABLED )
 
 #include "mc_hardware_interfaces_port_8bit.h"
-#include "shift_register.h"
+#include "shift_register_base.h"
 
 #ifdef __cplusplus
 
 namespace ShiftRegister {
 
 struct Port8bitCfg {
-	uint8_t					byte;		/// Байт в сдвиговом регистре.
-	ShiftRegister::Base*	sr;			/// Сам сдвиговый регистр.
+    uint8_t byte;        /// Байт в сдвиговом регистре.
+    ShiftRegister::Base *sr;            /// Сам сдвиговый регистр.
 };
 
 class Port8bit : public McHardwareInterfaces::Port8bit {
 public:
-	Port8bit( const Port8bitCfg* const cfg ) :
-		cfg( cfg ) {}
+    Port8bit (const Port8bitCfg *const cfg) :
+        cfg(cfg) {}
 
 public:
-	void		write			(	uint8_t		data	);
-	void		reset			(	void	);
-	void		toggle			(	void	);
-	uint8_t		read			(	void	);
+    void write (uint8_t data);
+    
+    void reset (void);
+    
+    void toggle (void);
+    
+    uint8_t read (void);
 
 private:
-	const Port8bitCfg* 	const cfg;
-
+    const Port8bitCfg *const cfg;
+    
 };
 
 }
