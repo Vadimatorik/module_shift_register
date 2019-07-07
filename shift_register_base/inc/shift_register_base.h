@@ -44,19 +44,19 @@ namespace ShiftRegister {
 
 // SPI и GPIO должен быть инициализирован заранее.
 struct BaseStaticCfg {
-    McHardwareInterfaces::Pin *const st;            // Вывод, подключенный к защелке.
+    mc_interfaces::Pin *const st;            // Вывод, подключенный к защелке.
     uint8_t *dataArray;            // Внутренний буфер.
     const uint32_t arraySize;            // Размер буфера.
     const bool strobActive;        // Состояния вывода разрешающего сигнал защелки.
-    McHardwareInterfaces::SpiMaster8Bit *const spiObj;        // Используемый SPI.
+    mc_interfaces::SpiMaster8Bit *const spiObj;        // Используемый SPI.
     USER_OS_STATIC_MUTEX *const mutex;        // Может быть не указан (nullptr).
 };
 
 struct BaseDinamicCfg {
-    McHardwareInterfaces::Pin *const st;            // Вывод, подключенный к защелке.
+    mc_interfaces::Pin *const st;            // Вывод, подключенный к защелке.
     const uint32_t byteCount;            // Размер буфера.
     const bool strobActive;        // Состояния вывода разрешающего сигнал защелки.
-    McHardwareInterfaces::SpiMaster8Bit *const spiObj;        // Используемый SPI.
+    mc_interfaces::SpiMaster8Bit *const spiObj;        // Используемый SPI.
     USER_OS_STATIC_MUTEX *const mutex;        // Может быть не указан (nullptr).
 };
 
@@ -77,11 +77,11 @@ public:
     void update (void);
 
 private:
-    McHardwareInterfaces::Pin *const st;
+    mc_interfaces::Pin *const st;
     uint8_t *dataArray;
     const uint32_t arraySize;
     const bool strobActive;
-    McHardwareInterfaces::SpiMaster8Bit *const spiObj;
+    mc_interfaces::SpiMaster8Bit *const spiObj;
     USER_OS_STATIC_MUTEX *const mutex;
     
 };
