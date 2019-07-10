@@ -5,7 +5,7 @@
 namespace ShiftRegister {
 
 ShiftRegister.Pin		--o			ShiftRegister.Base
-ShiftRegister.Pin		..|>		McHardwareInterfaces.Pin
+ShiftRegister.Pin		..|>		mc_interfaces.Pin
 
 class Pin {
 	{field}-	PinBase*				const st
@@ -39,7 +39,7 @@ class Pin {
 #if defined( MODULE_SHIFT_REGISTER_ENABLED ) && \
     defined( MODULE_SHIFT_REGISTER_PIN_ENABLED )
 
-#include "mc_hardware_interfaces_pin.h"
+#include "mc_pin.h"
 #include "shift_register_base.h"
 
 #ifdef __cplusplus

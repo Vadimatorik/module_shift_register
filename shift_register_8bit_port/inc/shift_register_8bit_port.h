@@ -4,7 +4,7 @@
 
 namespace ShiftRegister {
 
-ShiftRegister.Port8bit		..|>	McHardwareInterfaces.Port8bit
+ShiftRegister.Port8bit		..|>	mc_interfaces.Port8bit
 ShiftRegister.Port8bit		--o		ShiftRegister.Base
 
 class Port8bit {
@@ -31,7 +31,7 @@ class Port8bit {
 #if defined( MODULE_SHIFT_REGISTER_ENABLED ) && \
     defined( MODULE_SHIFT_REGISTER_8BIT_PORT_ENABLED )
 
-#include "mc_hardware_interfaces_port_8bit.h"
+#include "mc_port_8bit.h"
 #include "shift_register_base.h"
 
 #ifdef __cplusplus

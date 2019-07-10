@@ -4,8 +4,8 @@
 
 namespace ShiftRegister {
 
-ShiftRegister.Base --o McHardwareInterfaces.Pin
-ShiftRegister.Base --o McHardwareInterfaces.SpiMaster8Bit
+ShiftRegister.Base --o mc_interfaces.Pin
+ShiftRegister.Base --o mc_interfaces.SpiMaster8Bit
 
 class Base {
 	{field}-	PinBase*				const st
@@ -36,8 +36,8 @@ class Base {
 
 #ifdef MODULE_SHIFT_REGISTER_ENABLED
 
-#include "mc_hardware_interfaces_pin.h"
-#include "mc_hardware_interfaces_spi_master_8bit.h"
+#include "mc_pin.h"
+#include "mc_spi_master_8bit.h"
 #include "user_os.h"
 
 namespace ShiftRegister {
